@@ -160,13 +160,6 @@ public class Functions {
         }
     }
 
-
-
-
-
-
-
-
     // Используем Stream API
     public static void filter_by_type() {
         if (stones.isEmpty()) {

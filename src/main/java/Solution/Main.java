@@ -1,5 +1,7 @@
 package Solution;
 
+import UsersSettings.Authentication;
+
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -17,6 +19,9 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+        start();
+
         int choice = 0;
         System.out.println("Добро пожаловать!");
         do {
@@ -58,11 +63,39 @@ public class Main {
                     reset_filters();
                     break;
                 case 9:
-                    System.out.println("Выход из программы.");
+                    start();
                     break;
                 default:
                     System.out.println("Ошибка: выбрано неверное действие");
             }
-        } while (choice != 9);
+        } while (true);
+    }
+
+    public static void start() {
+        int input = 0;
+            System.out.println("1. Войти\n2. Зарегестрироваться\n3. Выйти\n\n");
+            try {
+                input = scanner.nextInt();
+                scanner.nextLine(); // Очистка буфера после считывания числа
+            } catch (InputMismatchException e) {
+                System.out.println("Ошибка: Введите цифру.");
+                scanner.nextLine(); // Очистка буфера ввода
+            }
+            switch (input){
+                case 1:
+                    Authentication.login();
+                    break;
+                case 2:
+                    System.out.print("\tВведите ваше новый username: ");
+                    String name = scanner.nextLine();
+                    System.out.print("\tВведите ваше новый password: ");
+                    String password = scanner.nextLine();
+                    Authentication.registerUser(name, password);
+                    break;
+                case 3:
+                    System.out.println("Завершение работы...");
+                    System.exit(1);
+                    break;
+            }
     }
 }
